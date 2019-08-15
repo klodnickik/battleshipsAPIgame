@@ -1,5 +1,15 @@
 <tr>
 {% for field in board_row %}
-    <td>{{ field }} </td>
+
+    {% if field==8 %}
+    <td bgcolor=grey>{{ field }} </td>
+    {% elif field==9 %}
+    <td bgcolor=red>{{ field }} </td>
+    {% elif field==1 %}
+    <td bgcolor=yellow>{{ field }} </td>
+    {% else %}
+    <td>{{ field }} </td> 
+    {% endif %}
+
 {% endfor %}
 </tr>

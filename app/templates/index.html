@@ -7,6 +7,7 @@ Battleships API game
 
 {% block content %}
 
+<meta http-equiv="refresh" content="5" >
 <div class="container">
 <h3>Battleships API game - status of game</h3><br>
 
@@ -14,7 +15,9 @@ Battleships API game
     <tr>
         <td><b>Player 1 board</b></td>
         <td width="50px"></td>
-        <td><b>Player 2 board</b></td>        
+        <td><b>Player 2 board</b></td>
+        <td width="50px"></td>
+        <td><b>Logs:</b></td>
     </tr>
 
     <tr>
@@ -35,9 +38,26 @@ Battleships API game
             {% endfor %}
             </table>
         </td>
+
+        <td></td>
+
+        <td>
+            <table class="table" >
+            <tr><th bgcolor=grey> {{ player_active }} turn</th></tr>
+            {% for log in logs %}
+                {% include '_log.html' %}
+            {% endfor %}
+            </table>
+        </td>
     
     </tr>
 </table>
 </div>
+
+<b>Legend:</b>
+0 - puste pole<br>
+1 - puste, po strzale<br>
+8 - pole ze statkiem<br>
+9 - pole z zatopionym statkiem<br>
 
 {% endblock %}
