@@ -6,22 +6,74 @@ def randomString(stringLength=10):
     letters = string.ascii_lowercase
     return ''.join(random.choice(letters) for i in range(stringLength))
 
+def generateShip(board, ship_size):
+
+    _validation_passed = False
+
+    while _validation_passed == False:
+        # randomly select ship location
+        ship = []
+        row = random.randint(0,9)
+        col = random.randint(0,9)
+        direction = random.randint(0,3)
+
+        for a in range (ship_size):
+            ship.append([row,col])
+            if direction == 0 : row = row -1
+            if direction == 1 : row = row +1
+            if direction == 2 : col = col -1
+            if direction == 3 : col = col +1    
+
+        # test ship
+        print (ship)
+        _validation_passed = True
+
+        # check ship location
+        for a in ship:
+            if (a[0] < 0) or (a[0]>9): _validation_passed = False
+            if (a[1] < 0) or (a[1]>9): _validation_passed = False
+            try:
+                if board[a[0]][a[1]] != 0 : _validation_passed = False
+                
+                for _row in range(a[0]-1,a[0]+2):
+                    for _col in range(a[1]-1, a[1]+2):
+                            if  (board[_row][_col]) != 0: _validation_passed = False
+            except:
+                _validation_passed = False
+
+
+        print ("Validation results: {}".format(_validation_passed))
+
+    # add ship to board
+
+    if _validation_passed == True:
+        for a in ship:
+            board[a[0]][a[1]] =8
+
+    return board
+
+
 class Player:
     def __init__(self,  player_no):
         self.player_no = player_no
-        self.board = [
-                [0, 9, 8, 0, 0, 0, 0, 0, 0, 0], 
-                [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-                [1, 0, 0, 0, 0, 8, 8, 8, 0, 0],
-                [0, 0, 8, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 8, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 8, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 8, 0, 0, 0, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 8, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 8, 0, 0, 0, 0],
-                [0, 0, 0, 0, 0, 8, 0, 0, 8, 0]
-                ]
+
+        # generate empty board (no ships)
+        self.board  =  [ [0]*10 for i in [0]*10]
+
+        # put ships into board
+        self.board = generateShip(self.board, 4)
+        self.board = generateShip(self.board, 3)
+        self.board = generateShip(self.board, 3)
+        self.board = generateShip(self.board, 2)
+        self.board = generateShip(self.board, 2)
+        self.board = generateShip(self.board, 2)
+        self.board = generateShip(self.board, 1)
+        self.board = generateShip(self.board, 1)
+        self.board = generateShip(self.board, 1)
+        self.board = generateShip(self.board, 1)
+
         self.player_key = randomString(10)
+
 
         
     def shot(self, row, col):

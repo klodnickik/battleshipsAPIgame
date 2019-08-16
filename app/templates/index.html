@@ -13,9 +13,19 @@ Battleships API game
 
 <table>
     <tr>
-        <td><b>Player 1 board</b></td>
+        <td><b>Player 1 board</b>
+            {% if player_active == "p1" %}
+            <font color=red>(active player)</font>
+            {% endif %}
+        </td>
+
         <td width="50px"></td>
-        <td><b>Player 2 board</b></td>
+ 
+        <td><b>Player 2 board</b>
+            {% if player_active == "p2" %}
+            <font color=red>(active player)</font>
+            {% endif %}
+        </td>        
         <td width="50px"></td>
         <td><b>Logs:</b></td>
     </tr>
@@ -43,7 +53,6 @@ Battleships API game
 
         <td>
             <table class="table" >
-            <tr><th bgcolor=grey> {{ player_active }} turn</th></tr>
             {% for log in logs %}
                 {% include '_log.html' %}
             {% endfor %}
