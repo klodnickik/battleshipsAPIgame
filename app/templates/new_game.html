@@ -1,0 +1,35 @@
+{% extends 'bootstrap/base.html' %}
+
+{% block title %}
+Battleships API game
+{% endblock %}
+
+
+{% block content %}
+
+<div class="container">
+<h3>Battleships API  - new game</h3><br>
+
+
+<table class="table table-striped table-dark">
+    <tr>
+        <th width="100px">Id of new game</th>
+        <td align=left>{{ g_id }}</td>
+    </tr>
+    <tr>
+        <th>Player 1 API key</th>
+        <td>{{ p1_key }}</td>
+    </tr>
+    <tr>
+        <th>Player 2 API key</th>
+        <td>{{ p2_key }}</td>
+    </tr>
+</table>
+
+{% include '_api_docs.html' %}
+
+<a class="btn btn-primary" href="/" role="button">START</a>
+</div>
+
+
+{% endblock %}

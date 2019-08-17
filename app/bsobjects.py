@@ -147,7 +147,7 @@ class Game:
         self.active_player = "p1"
 
     def checkGameId(self, game_id):
-        if game_id == "test-game":
+        if game_id == self.id:
             test_result = True
         else:
             test_result = False
