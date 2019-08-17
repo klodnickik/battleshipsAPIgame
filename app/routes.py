@@ -36,6 +36,9 @@ def index_page():
 
     return render_template('index.html', board_p1=p1.board, board_p2=p2.board, logs = logs, player_active = g.active_player)
 
+@app.route('/api-doc')
+def api_page():
+    return render_template('api_docs.html')
 
 @app.route('/api/v0/shoot/<game_id>/<player_key>/<player_id>/<row>/<column>')
 def shot_call(row,column,player_key, game_id, player_id):
