@@ -94,6 +94,20 @@ class Player:
 
         return _result
 
+    def checkProgress(self):
+        game_status = []
+        total_ships = 0
+        sailing_ships = 0
+
+        for a in range (0,9):
+            for b in range (0,9):
+                if self.board[a][b] >= 8: total_ships = total_ships + 1
+                if self.board[a][b] == 8: sailing_ships = sailing_ships + 1
+        game_status.append(total_ships) #  total ships
+        game_status.append(sailing_ships) #  sailing ships
+
+        return game_status
+
     def checkIfsink(self, row, col):
 
         sink = True
@@ -143,7 +157,7 @@ class Game:
 
     def __init__(self):
         self.id = randomString(8)
-        self.status = "start"
+        self.status = "in-progress"
         self.active_player = "p1"
 
     def checkGameId(self, game_id):
